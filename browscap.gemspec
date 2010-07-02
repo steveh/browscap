@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
      "README.markdown",
      "Rakefile",
      "VERSION",
+     "browscap.gemspec",
      "ini/default.ini",
      "lib/browscap.rb",
      "spec/browscap_spec.rb"
