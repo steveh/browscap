@@ -87,6 +87,7 @@ class Browscap
     section = match(user_agent)
     @@user_agent_properties[section]
   end
+  alias =~ query
 
   protected
 
