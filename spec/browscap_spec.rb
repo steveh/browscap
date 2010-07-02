@@ -46,13 +46,6 @@ describe Browscap do
     @browscap.query("Mozilla/5.0 (X11; Linux i686; U;) Gecko/20051128 Kazehakase/0.3.3 Debian/0.3.3-1").should be_nil
   end
 
-  it "should detect Galeon 1.3 on Linux" do
-    galeon13 = @browscap.query "Mozilla/5.0 (X11; U; Linux i386) Gecko/20063102 Galeon/1.3test"
-    galeon13.browser.should == 'Galeon'
-    galeon13.version.should == '1.3'
-    galeon13.platform.should == 'Linux'
-  end
-
   it "should detect MSIE 6.0 on Windows 98" do
     ie6 = @browscap.query "Mozilla/4.0 (compatible; MSIE 6.0; Windows 98)"
     ie6.browser.should == 'IE'
