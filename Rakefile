@@ -6,10 +6,10 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "browscap"
     gem.summary = %Q{A simple library to parse the beloved browscap.ini file}
-    gem.description = %Q{A simple library to parse the beloved browscap.ini file.  Useful for detecting if visitors are users using browsers or bots.}
-    gem.email = "jasonmadams@gmail.com"
-    gem.homepage = "http://github.com/ealdent/browscap"
-    gem.authors = ["Jason Adams"]
+    gem.description = %Q{A simple library to parse the beloved browscap.ini file (ported to ruby from Henning Schroeder's python code by Lukas Fittl).}
+    gem.email = ["lukas@fittl.com", "jasonmadams@gmail.com"]
+    gem.homepage = "http://github.com/lfittl/browscap"
+    gem.authors = ["Henning Schroeder", "Lukas Fittl", "Jason Adams"]
     gem.add_dependency "inifile", ">= 0.3.0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end

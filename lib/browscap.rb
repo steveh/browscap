@@ -1,3 +1,20 @@
+# Browscap Ruby Gem - A simple library to parse the beloved browscap.ini file.
+# Copyright (C) 2010
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
 require 'inifile'
 
 class Browscap
@@ -21,7 +38,7 @@ class Browscap
 
       # Populate user_agent_properties and user_agent_regexps
       child_sections.each do |section|
-        properties = _get_browser_props(ini, section)
+        properties = get_browser_props(ini, section)
 
         browser = Browser.new
         browser.browser = properties['Browser']
@@ -67,11 +84,13 @@ class Browscap
 
   # Looks up the given user agent string and returns a dictionary containing information on this browser or bot.
   def query(user_agent)
-    section = _match(user_agent)
+    section = match(user_agent)
     @@user_agent_properties[section]
   end
 
-  def _match(user_agent)
+  protected
+
+  def match(user_agent)
     return @@match_cache[user_agent] if @@match_cache[user_agent]
 
     matching_section = ''
@@ -90,11 +109,11 @@ class Browscap
   # Recursively traverses the properties tree (based on 'parent' attribute of each section) and
   # returns a dictionary of all browser properties for the given section name. The properties lower
   # in the tree override those higher in the tree.
-  def _get_browser_props(ini, section)
+  def get_browser_props(ini, section)
     data = {}
 
     if parent = ini[section]["Parent"]
-      data.merge! _get_browser_props(ini, parent)
+      data.merge! get_browser_props(ini, parent)
     end
 
     data.merge! ini[section]
@@ -103,7 +122,20 @@ class Browscap
 end
 
 class Browser
-  attr_accessor :browser, :version, :major_ver, :minor_ver, :platform, :alpha, :beta, :win16, :win32, :win64,
-  :frames, :iframes, :tables, :cookies, :background_sounds, :javascript, :vbscript, :java_applets, :activex_controls,
-  :is_banned, :is_mobile_device, :is_syndication_reader, :crawler, :css_version, :supports_css, :aol_version, :aol
+  attr_accessor :activex_controls, :alpha, :aol, :aol_version, :background_sounds, :beta,
+    :browser, :cookies, :crawler, :css_version, :frames, :iframes, :is_banned, :is_mobile_device,
+    :is_syndication_reader, :java_applets, :javascript, :major_ver, :minor_ver, :platform,
+    :supports_css, :tables, :vbscript, :version, :win16, :win32, :win64
+
+  [
+    :activex_controls, :alpha, :aol, :background_sounds, :beta, :cookies, :crawler, :frames,
+    :iframes, :is_banned, :is_mobile_device, :is_syndication_reader, :java_applets, :javascript,
+    :supports_css, :tables, :vbscript, :win16, :win32, :win64
+  ].each do |method_name|
+    class_eval %{
+      def #{method_name}?
+        @#{method_name}
+      end
+    }
+  end
 end
