@@ -28,7 +28,7 @@ class Browscap
     @@match_cache ||= {}
 
     if @@user_agent_properties.empty? || @@user_agent_regexps.empty?
-      ini = IniFile.load(filename)
+      ini = IniFile.load(filename, :encoding => 'ISO-8859-1')
 
       # Remote meta sections
       ini.delete_section '*'
