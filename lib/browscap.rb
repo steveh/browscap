@@ -22,13 +22,14 @@
 require 'inifile'
 
 class Browscap
-  def initialize(filename = File.join(File.dirname(__FILE__), '..', 'ini', 'default.ini'))
+  def initialize(filename = File.join(File.dirname(__FILE__), '..', 'ini', 'default.ini'), opts={})
     @@user_agent_properties ||= {}
     @@user_agent_regexps ||= {}
     @@match_cache ||= {}
+    @@encoding = opts[:encoding] || 'ISO-8859-1'
 
     if @@user_agent_properties.empty? || @@user_agent_regexps.empty?
-      ini = IniFile.load(filename, :encoding => 'ISO-8859-1')
+      ini = IniFile.load(filename, :encoding => @@encoding)
 
       # Remote meta sections
       ini.delete_section '*'
@@ -81,7 +82,11 @@ class Browscap
         regexp.gsub! "?", "."
         regexp.gsub! "*", ".*?"
 
-        @@user_agent_regexps[section] = Regexp.new("^%s$" % regexp)
+        if RUBY_VERSION < '1.9'
+          @@user_agent_regexps[section] = Regexp.new(("^%s$" % regexp))
+        else
+          @@user_agent_regexps[section] = Regexp.new(("^%s$" % regexp).force_encoding(@@encoding))
+        end
       end
     end
   end
