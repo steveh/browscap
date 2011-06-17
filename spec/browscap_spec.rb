@@ -1,10 +1,9 @@
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-require 'browscap'
+require "spec_helper"
 
-describe Browscap do
+describe Browscap::Parser do
+
   before(:each) do
-    @browscap = Browscap.new
+    @browscap = Browscap::Parser.new
   end
 
   it "should detect Konqueror 3.5 on Linux" do
