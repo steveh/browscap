@@ -45,6 +45,9 @@ module Browscap
           browser.javascript = properties['JavaScript'].downcase == 'true'
           browser.vbscript = properties['VBScript'].downcase == 'true'
           browser.java_applets = properties['JavaApplets'].downcase == 'true'
+          puts '--------------------------'
+          puts browser.browser
+          puts '--------------------------'
           browser.activex_controls = properties['ActiveXControls'].downcase == 'true'
           browser.banned = properties['isBanned'].downcase == 'true'
           browser.mobile_device = properties['isMobileDevice'].downcase == 'true'
