@@ -9,7 +9,7 @@ Refactored by Steve Hoeksema.
 ## Usage
 
     require 'browscap'
-    bcap = Browscap.new
+    bcap = Browscap::Parser.new
     browser = bcap.query("Mozilla/5.0 (compatible; Konqueror/3.5; Linux; X11; de) KHTML/3.5.2 (like Gecko) Kubuntu 6.06 Dapper")
 
     browser.crawler?    # => false
