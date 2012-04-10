@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "browscap/version"
 
 Gem::Specification.new do |s|
-  s.name        = "browscap"
+  s.name        = "iqc-browscap"
   s.version     = Browscap::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Henning Schroeder", "Lukas Fittl", "Jason Adams", "Gilles Devaux", "Steve Hoeksema", "Colm McBarron"]
