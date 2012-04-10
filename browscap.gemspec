@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Henning Schroeder", "Lukas Fittl", "Jason Adams", "Gilles Devaux", "Steve Hoeksema", "Colm McBarron"]
   s.email       = ["colm.mcbarron@iqcontent.com"]
-  s.homepage    = "https://github.com/colmmcbarron/browscap"
+  s.homepage    = "https://github.com/ColmMcBarron/browscap"
   s.summary     = "A simple library to parse the beloved browscap.ini file"
   s.description = "A simple library to parse the beloved browscap.ini file (ported to ruby from Henning Schroeder's python code by Lukas Fittl)."
 
