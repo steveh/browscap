@@ -32,29 +32,29 @@ module Browscap
           browser.major_ver = properties['MajorVer'].to_i
           browser.minor_ver = properties['MinorVer'].to_i
           browser.platform = properties['Platform']
-          browser.alpha = properties['Alpha'].downcase == 'true'
-          browser.beta = properties['Beta'].downcase == 'true'
-          browser.win16 = properties['Win16'].downcase == 'true'
-          browser.win32 = properties['Win32'].downcase == 'true'
-          browser.win64 = properties['Win64'].downcase == 'true'
-          browser.frames = properties['Frames'].downcase == 'true'
-          browser.iframes = properties['IFrames'].downcase == 'true'
-          browser.tables = properties['Tables'].downcase == 'true'
-          browser.cookies = properties['Cookies'].downcase == 'true'
-          browser.background_sounds = properties['BackgroundSounds'].downcase == 'true'
-          browser.javascript = properties['JavaScript'].downcase == 'true'
-          browser.vbscript = properties['VBScript'].downcase == 'true'
-          browser.java_applets = properties['JavaApplets'].downcase == 'true'
-          browser.activex_controls = properties['ActiveXControls'].downcase == 'true'
-          browser.banned = properties['isBanned'].downcase == 'true'
-          browser.mobile_device = properties['isMobileDevice'].downcase == 'true'
-          browser.syndication_reader = properties['isSyndicationReader'].downcase == 'true'
-          browser.crawler = properties['Crawler'].downcase == 'true'
+          browser.alpha = properties['Alpha'].to_s.downcase == 'true'
+          browser.beta = properties['Beta'].to_s.downcase == 'true'
+          browser.win16 = properties['Win16'].to_s.downcase == 'true'
+          browser.win32 = properties['Win32'].to_s.downcase == 'true'
+          browser.win64 = properties['Win64'].to_s.downcase == 'true'
+          browser.frames = properties['Frames'].to_s.downcase == 'true'
+          browser.iframes = properties['IFrames'].to_s.downcase == 'true'
+          browser.tables = properties['Tables'].to_s.downcase == 'true'
+          browser.cookies = properties['Cookies'].to_s.downcase == 'true'
+          browser.background_sounds = properties['BackgroundSounds'].to_s.downcase == 'true'
+          browser.javascript = properties['JavaScript'].to_s.downcase == 'true'
+          browser.vbscript = properties['VBScript'].to_s.downcase == 'true'
+          browser.java_applets = properties['JavaApplets'].to_s.downcase == 'true'
+          browser.activex_controls = properties['ActiveXControls'].to_s.downcase == 'true'
+          browser.banned = properties['isBanned'].to_s.downcase == 'true'
+          browser.mobile_device = properties['isMobileDevice'].to_s.downcase == 'true'
+          browser.syndication_reader = properties['isSyndicationReader'].to_s.downcase == 'true'
+          browser.crawler = properties['Crawler'].to_s.downcase == 'true'
           browser.css_version = properties['CssVersion'].to_i
-          browser.supports_css = properties['supportsCSS'].downcase == 'true'
+          browser.supports_css = browser.css_version > 0
           browser.aol_version = properties['aolVersion'].to_i
-          browser.aol = properties['AOL'].downcase == 'true'
-
+          browser.aol = browser.aol_version > 0
+          
           @@user_agent_properties[section] = browser
 
           # Convert .ini file regexp syntax into ruby regexp syntax
